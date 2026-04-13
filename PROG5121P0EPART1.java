@@ -13,13 +13,15 @@ import java.util.Scanner;
 public class PROG5121P0EPART1 {
 
     public static void main(String[] args) {
-          Scanner input = new Scanner(System.in);
+          
         //declarations
         String username;
         String password;
-        String cellphone;
-        // prompt user registration input
-        System.out.println("please enter registration details");
+        String cellphone; 
+   
+        // prompt user input for registaring
+          Scanner input = new Scanner(System.in);
+        System.out.println("Please enter registration details");
         System.out.print("Enter username: ");
         username = input.nextLine();
         boolean correctusername = Login.checkUserName(username);
@@ -51,14 +53,15 @@ public class PROG5121P0EPART1 {
         if (correctusername&& correctpassword && correctcellphone) {
             Login.registerUser(username, password);
             isRegistered = true;
-            System.out.println("User registered successfully.");
+            System.out.println("Registration successfully.");
         } else {
             System.out.println("Registration failed.");
         }
         if (!isRegistered) {
-            System.out.println("You cannot login because registration failed.");
+            System.out.println("You cannot login because your attempt to register  failed.");
             return;
         }
+        //prompt user input for log in
         System.out.println("Please enter your login details");
         System.out.println("Enter username");
         String loginUser = input.nextLine();
@@ -94,7 +97,8 @@ class Login {
 
         return password.length() >= 8 && hasUpper && hasNumber && hasSpecial;
     }
-
+ 
+    
     // checking cellphone number
     public static boolean checkCellPhone(String cellphone) {
         return cellphone.startsWith("+27") && cellphone.length() == 12;
@@ -111,7 +115,7 @@ class Login {
     // login message
     public static String returnLoginStatus(boolean status, String username) {
         if (status) {
-            return "Welcome " + username + ", it is great to see you again.";
+            return "Welcome " + username + ", you are now logged in.";
         } else {
             return "Username or password incorrect, please try again.";
         }
